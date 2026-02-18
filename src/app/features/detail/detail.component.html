@@ -1,0 +1,90 @@
+<div class="container" *ngIf="news">
+  <div class="detail-layout">
+    <div class="main">
+      <h1>{{ news.title }}</h1>
+
+
+      <img class="thumbnail" [src]="news.thumbnail" />
+
+      <p class="desc">
+        {{ news.description }}
+      </p>
+
+      <p>
+        {{ news.description }} {{ news.description }}
+      </p>
+
+      <p>
+        {{ news.description }} {{ news.description }}
+      </p>
+    </div>
+
+  <div class="sidebar">
+    <h3>Berita Terpopuler</h3>
+
+    <div class="popular-list">
+      <div
+        *ngFor="let item of popular; let i = index"
+        class="popular-item"
+        (click)="goToDetail(item)"
+      >
+        <span class="popular-rank">{{ i + 1 }}</span>
+        <div class="popular-content">
+          <p class="popular-title">{{ item.title }}</p>
+          <div class="popular-meta">
+            <span class="popular-category">{{ getCategory(item) }}</span>
+            <span class="popular-date">{{ formatDate(item.pubDate) }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="related-title">Berita Terkait</h3>
+
+    <div class="related-list">
+      <div
+        *ngFor="let item of relatedNews"
+        class="related-item"
+        (click)="goToDetail(item)"
+      >
+        <p class="related-title-text">{{ item.title }}</p>
+        <div class="related-meta">
+          <span class="related-category">{{ getCategory(item) }}</span>
+          <span class="related-date">{{ formatDate(item.pubDate) }}</span>
+        </div>
+      </div>
+    </div>
+
+    <a href="#" class="lihat-semua">Lihat Semua →</a>
+  </div>
+
+  <div class="comment">
+    <h3>Komentar</h3>
+    <textarea placeholder="Apa yang ingin anda tanyakan?"></textarea>
+    <button>Kirim</button>
+
+    <div class="comment-list">
+      <div class="comment-item">
+        <div class="comment-author">
+          <strong>Aldi Ahmad Dani S.Kom</strong>
+          <span class="comment-date">28 Mar 2024 11:15</span>
+        </div>
+        <p class="comment-text">
+          Mohon maaf, apakah sertifikatnya sudah tidak dapat diunduh? Karena saya mau download ada konfirmasi bahwa TOT aktivasi salah Bagaimana ya solusinya?
+        </p>
+        <a href="#" class="reply-link">Balas</a>
+
+        <div class="comment-reply">
+          <div class="comment-author">
+            <strong>Tristan Tsurayyaa Mumtaaz S.Kom</strong>
+            <span class="comment-date">28 Mar 2024 11:15</span>
+          </div>
+          <p class="comment-text">
+            Saya mengunduh sertifikatnya kok juga belum bisa
+          </p>
+          <a href="#" class="reply-link">Balas</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

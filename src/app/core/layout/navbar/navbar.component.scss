@@ -1,0 +1,193 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+$navbar-height: 80px;
+
+$color-primary: #2563eb;
+$color-white: #ffffff;
+$color-gray-100: #f3f4f6;
+$color-gray-600: #4b5563;
+$color-gray-900: #111827;
+
+$font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+$transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+$breakpoint-lg: 1400px;
+$breakpoint-md: 1200px;
+$breakpoint-sm: 1024px;
+$breakpoint-xs: 900px;
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: $navbar-height;
+  background: rgba($color-white, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba($color-gray-100, 0.5);
+  transition: $transition-base;
+  z-index: 1000;
+  font-family: $font-family-base;
+
+  // Scrolled state
+  &--scrolled {
+    background: $color-primary;
+    border-bottom-color: rgba($color-white, 0.15);
+    box-shadow: 0 4px 20px rgba($color-primary, 0.3);
+
+    .navbar__logo-svg {
+      color: $color-white;
+    }
+
+    .navbar__logo-text {
+      color: $color-white;
+    }
+
+    .navbar__menu-item {
+      color: rgba($color-white, 0.85);
+
+      &:hover {
+        color: $color-white;
+      }
+
+      &--active {
+        color: $color-white;
+
+        &::after {
+          background: $color-white;
+        }
+      }
+    }
+  }
+
+  // Container
+  &__container {
+    max-width: 1600px;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+
+    @media (min-width: $breakpoint-lg) {
+      padding: 0 64px;
+    }
+
+    @media (max-width: $breakpoint-lg) and (min-width: $breakpoint-md) {
+      padding: 0 40px;
+    }
+
+    @media (max-width: $breakpoint-md) and (min-width: $breakpoint-sm) {
+      padding: 0 32px;
+    }
+
+    @media (max-width: $breakpoint-sm) and (min-width: $breakpoint-xs) {
+      padding: 0 24px;
+    }
+  }
+
+  // Logo
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    cursor: pointer;
+
+    &-svg {
+      width: 44px;
+      height: 44px;
+      color: $color-primary; // Biru
+      transition: color 0.3s ease;
+
+      &:hover {
+        transform: scale(1.05);
+      }
+
+      &--scrolled {
+        color: $color-white; // Putih
+      }
+    }
+
+    &-text {
+      font-weight: 700;
+      font-size: 22px;
+      letter-spacing: -0.03em;
+      color: $color-gray-900;
+      transition: color 0.3s ease;
+
+      @media (max-width: $breakpoint-sm) {
+        font-size: 20px;
+      }
+    }
+  }
+
+  &__menu {
+    display: flex;
+
+    @media (min-width: $breakpoint-lg) {
+      gap: 48px;
+    }
+
+    @media (max-width: $breakpoint-lg) and (min-width: $breakpoint-md) {
+      gap: 40px;
+    }
+
+    @media (max-width: $breakpoint-md) and (min-width: $breakpoint-sm) {
+      gap: 32px;
+    }
+
+    @media (max-width: $breakpoint-sm) and (min-width: $breakpoint-xs) {
+      gap: 24px;
+    }
+
+    &-item {
+      position: relative;
+      padding: 8px 0;
+      color: $color-gray-600;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      text-decoration: none;
+      transition: $transition-base;
+      cursor: pointer;
+      white-space: nowrap;
+
+      @media (min-width: $breakpoint-lg) {
+        font-size: 16px;
+      }
+
+      @media (max-width: $breakpoint-lg) and (min-width: $breakpoint-md) {
+        font-size: 15px;
+      }
+
+      @media (max-width: $breakpoint-md) and (min-width: $breakpoint-sm) {
+        font-size: 14px;
+      }
+
+      @media (max-width: $breakpoint-sm) and (min-width: $breakpoint-xs) {
+        font-size: 13px;
+      }
+
+      &:hover {
+        color: $color-primary;
+
+        &::after {
+          width: 100%;
+        }
+      }
+
+      &--active {
+        color: $color-primary;
+        font-weight: 600;
+
+        &::after {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

@@ -1,1 +1,62 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --navbar-height: 80px;
+  --color-primary: #2563eb;
+  --color-white: #ffffff;
+  --color-background: #f9fafb;
+}
+
+$breakpoint-lg: 1400px;
+$breakpoint-md: 1200px;
+$breakpoint-sm: 1024px;
+$breakpoint-xs: 900px;
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  padding-top: var(--navbar-height);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--color-background);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+
+  @media (min-width: $breakpoint-lg) {
+    max-width: 1400px;
+    padding: 0 48px;
+  }
+
+  @media (max-width: $breakpoint-lg) and (min-width: $breakpoint-md) {
+    max-width: 1200px;
+    padding: 0 40px;
+  }
+
+  @media (max-width: $breakpoint-md) and (min-width: $breakpoint-sm) {
+    max-width: 1024px;
+    padding: 0 32px;
+  }
+
+  @media (max-width: $breakpoint-sm) and (min-width: $breakpoint-xs) {
+    max-width: 900px;
+    padding: 0 24px;
+  }
+}

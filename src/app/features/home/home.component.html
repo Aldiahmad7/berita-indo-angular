@@ -1,0 +1,110 @@
+<div class="home-container">
+  <section *ngIf="isHomePage && headlineList.length" class="headline-section">
+    <div class="container">
+      <div class="headline-wrapper">
+        <div class="headline-content">
+          <div class="headline-category">Headline</div>
+          <h1 class="headline-title">{{ currentHeadline.title }}</h1>
+          <p class="headline-description">{{ currentHeadline.description }}</p>
+          <div class="headline-meta">
+            <span class="headline-date">{{ formatDate(currentHeadline.pubDate) }}</span>
+          </div>
+          <a
+            class="headline-link"
+            (click)="goToDetail(currentHeadline)"
+          >
+            Baca Selengkapnya <span class="arrow">→</span>
+          </a>
+        </div>
+
+        <div class="headline-image-wrapper" (click)="goToDetail(currentHeadline)">
+          <div class="card-image-placeholder"></div>
+        </div>
+      </div>
+
+      <div class="headline-navigation" *ngIf="headlineList.length > 1">
+        <button
+          class="nav-btn prev"
+          (click)="prevHeadline()"
+          [disabled]="currentHeadlineIndex === 0"
+        >
+          ← Prev
+        </button>
+        <button
+          class="nav-btn next"
+          (click)="nextHeadline()"
+          [disabled]="currentHeadlineIndex === headlineList.length - 1"
+        >
+          Next →
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section *ngIf="isHomePage && popular.length" class="popular-section">
+    <div class="container">
+      <h2 class="section-title">Berita Terpopuler</h2>
+
+      <div class="popular-grid">
+        <div
+          *ngFor="let item of popular; let i = index"
+          class="popular-card"
+          (click)="goToDetail(item)"
+        >
+          <div class="popular-rank">{{ i + 1 }}</div>
+          <div class="popular-content">
+            <h3 class="popular-title">{{ item.title }}</h3>
+            <div class="popular-meta">
+              <span class="popular-category">{{ getCategory(item) }}</span>
+              <span class="popular-date">{{ formatDate(item.pubDate) }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="recommendations-section">
+    <div class="container">
+      <h2 class="section-title">
+        {{ isHomePage ? 'Rekomendasi Untuk Anda' : ('Kategori: ' + currentCategory) }}
+      </h2>
+
+      <div class="recommendations-grid">
+        <div
+          *ngFor="let item of paginatedRecommendations"
+          class="recommendation-card"
+          (click)="goToDetail(item)"
+        >
+          <div class="card-image-wrapper">
+            <div class="card-image-placeholder"></div>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">{{ item.title }}</h3>
+            <div class="card-meta">
+              <span class="card-category">{{ getCategory(item) }}</span>
+              <span class="card-date">{{ formatDate(item.pubDate) }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pagination-info" *ngIf="recommendations.length > 0">
+        Showing {{ ((currentPage - 1) * pageSize) + 1 }} to
+        {{ Math.min(currentPage * pageSize, recommendations.length) }}
+        of {{ recommendations.length }} results
+      </div>
+
+      <div class="pagination" *ngIf="totalPages.length > 1">
+        <button
+          *ngFor="let p of totalPages"
+          class="pagination-btn"
+          [class.active]="p === currentPage"
+          (click)="changePage(p)"
+        >
+          {{ p }}
+        </button>
+      </div>
+    </div>
+  </section>
+</div>
